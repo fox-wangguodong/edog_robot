@@ -1,0 +1,20 @@
+<launch>
+    <arg name="role" value="Trckle2"/>
+
+    <param name="ImageUtils" type="string" value="/home/fox/data.txt" />
+    <param name="robot_team" type="string" value="red" />
+    <param name="robot_number" type="int" value="16" />
+
+    <node pkg="edog_robot" type="front_image_subscriber" name="$(arg role)_front_image_subscriber" respawn="true"/>
+    <node pkg="edog_robot" type="front_image_publisher" name="$(arg role)_front_image_publisher" respawn="true" args="1"/>
+
+    <node pkg="edog_robot" type="below_image_subscriber" name="$(arg role)_below_image_subscriber" respawn="true"/>
+    <node pkg="edog_robot" type="below_image_publisher" name="$(arg role)_below_image_publisher" respawn="true" args="2"/>
+
+    <!--<node pkg="edog_robot" type="command_listener" name="$(arg role)_command_listener" respawn="true" args="/dev/ttyUSB0"/>-->
+    <node pkg="edog_robot" type="status_controller" name="$(arg role)_status_controller" respawn="true"/>
+    <node pkg="edog_robot" type="policy" name="$(arg role)_policy" respawn="true"/>
+    <node pkg="edog_robot" type="cooperation" name="$(arg role)_cooperation" respawn="true"/>
+    <node pkg="edog_robot" type="broadcast_receiver" name="$(arg role)_broadcast_receiver" respawn="true"/>
+    <node pkg="edog_robot" type="broadcast_sender" name="$(arg role)_broadcast_sender" respawn="true"/>
+</launch>
